@@ -41,8 +41,9 @@ const Track* TrackReconstructor::getBestTrack() const {
     best->pt = 100.0;
     best->hits = m_hits;
 
-    delete best;   // freed here
+    //delete best;   // freed here
     return best;   // ERROR: returning freed pointer
+    delete best;
 }
 
 } // namespace tt_e1
