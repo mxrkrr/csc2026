@@ -36,14 +36,17 @@ std::vector<Track> TrackReconstructor::reconstruct() {
 
 // BUG 3: Use-After-Free
 // Return a pointer to memory that has already been freed.
-const Track* TrackReconstructor::getBestTrack() const {
-    auto* best = new Track{};
-    best->pt = 100.0;
-    best->hits = m_hits;
+// Return by value
+Track TrackReconstructor::getBestTrack() const {
+    // auto* best = new Track{};
+    // best->pt = 100.0;
+    // best->hits = m_hits;
+    Track best{};
+    best.pt = 100.0;
+    best.hits = m_hits;
 
-    //delete best;   // freed here
     return best;   // ERROR: returning freed pointer
-    delete best;
+    // delete best;    // freed here
 }
 
 } // namespace tt_e1

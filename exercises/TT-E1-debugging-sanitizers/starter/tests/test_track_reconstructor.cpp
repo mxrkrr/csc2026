@@ -22,3 +22,17 @@ TEST_CASE("TrackReconstructor returns one track when hits are present") {
     REQUIRE(tracks[0].hits[0].energy == Catch::Approx(4.0));
 }
 
+TEST_CASE("TrackReconstructor getBestTrack returns a valid Track") {
+    tt_e1::TrackReconstructor reco(/*minPt=*/1.0);
+
+    tt_e1::Hit h{};
+    h.energy = 4.0;
+    reco.addHit(h);
+
+    const tt_e1::Track best = reco.getBestTrack();
+
+    REQUIRE(best.pt > 0.0);
+    REQUIRE(best.hits.size() == 1);
+    REQUIRE(best.hits[0].energy == Catch::Approx(4.0));
+}
+

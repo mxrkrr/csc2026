@@ -22,9 +22,12 @@ int main() {
     std::cout << "Tracks reconstructed: " << tracks.size() << std::endl;
 
     // Trigger: use-after-free (only visible after you fix the overflow)
-    const tt_e1::Track* best = reco.getBestTrack();
-    std::cout << "Best track pT: " << best->pt << std::endl;
+    // const tt_e1::Track* best = reco.getBestTrack();
+    // std::cout << "Best track pT: " << best->pt << std::endl;
 
+    const tt_e1::Track best = reco.getBestTrack();
+    std::cout << "Best track pT: " << best.pt << std::endl;
+    
     return 0;
 }
 
